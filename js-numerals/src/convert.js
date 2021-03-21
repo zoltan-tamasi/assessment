@@ -61,7 +61,9 @@ const convert = (num) => {
   } else if (numString.length > 3) {
     const tail = numString.slice(-3);
     const head = numString.slice(0, -3);
-    if (tail[0] === '0') { 
+    if (tail.join('') === '000') {
+      return convert(parseInt(head.join(''))) + ' thousand';
+    } else if (tail[0] === '0') { 
       return convert(parseInt(head.join(''))) + ' thousand and ' + convert(parseInt(tail.join('')));
     } else {
       return convert(parseInt(head.join(''))) + ' thousand ' + convert(parseInt(tail.join('')));
