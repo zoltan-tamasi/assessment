@@ -39,10 +39,10 @@ const tens = (num) => (
 
 const convert = (num) => {
 
-  const numParsed = parseInt(num);
+  const numParsed = parseFloat(num);
 
-  if (isNaN(numParsed)) {
-    throw new TypeError('parameter must be numeric');
+  if (isNaN(numParsed) || numParsed < 0 || !Number.isInteger(numParsed)) {
+    throw new TypeError('parameter must be an integer greater or equal to 0');
   }
 
   if (numParsed === 0) return 'zero';
