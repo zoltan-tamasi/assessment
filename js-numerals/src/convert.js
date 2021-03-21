@@ -76,7 +76,7 @@ const convert = (num) => {
     if (head === '1') {
         return teens(tail[0]);
     } else { 
-        return (tail.join('') === '0' ? '' : tens(head) + '-') + ones(tail[0]);
+        return (tail.join('') === '0' ? tens(head) + '' : tens(head) + '-') + ones(tail[0]);
     }
   } else {
     return ones(head);

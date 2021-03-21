@@ -55,4 +55,8 @@ describe('Basic spec', () => {
     expect(convert(17999)).to.equal('seventeen thousand nine hundred and ninety-nine');
   });
 
+  it('convert function should work correctly #13', () => {
+    expect(convert(20)).to.equal('twenty');
+  });
+
 });
