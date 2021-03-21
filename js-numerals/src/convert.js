@@ -39,13 +39,15 @@ const tens = (num) => (
 
 const convert = (num) => {
 
-  if ((typeof num) !== 'number') {
+  const numParsed = parseInt(num);
+
+  if (isNaN(numParsed)) {
     throw new TypeError('parameter must be numeric');
   }
 
-  if (num === 0) return 'zero';
+  if (numParsed === 0) return 'zero';
 
-  const numString = num.toString().split('');
+  const numString = numParsed.toString().split('');
   const [head, ...tail] = numString;
 
   if (numString.length === 4 && head === '1') {
