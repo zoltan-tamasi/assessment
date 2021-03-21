@@ -49,6 +49,13 @@ const convert = (num) => {
   const [head, ...tail] = numString;
 
   if (numString.length > 3) {
+    const tail = numString.slice(-3);
+    const head = numString.slice(0, -3);
+    if (tail[0] === '0') { 
+      return convert(parseInt(head.join(''))) + ' thousand and ' + convert(parseInt(tail.join('')));
+    } else {
+      return convert(parseInt(head.join(''))) + ' thousand ' + convert(parseInt(tail.join('')));
+    }
   } else if (numString.length === 3) {
     if (tail.join('') === '00') { 
       return ones(head) + ' hundred';
