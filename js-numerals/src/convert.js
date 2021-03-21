@@ -50,7 +50,7 @@ const convert = (num) => {
   const numString = numParsed.toString().split('');
   const [head, ...tail] = numString;
 
-  if (numString.length === 4 && head === '1') {
+  if (numString.length === 4 && head === '1' && tail[0] !== '0') {
     const tail = numString.slice(-2);
     const head = numString.slice(0, -2);
     if (tail.join('') === '00') {
