@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'src/**/*.spec.js'",
+    "test": "node node_modules/mocha/bin/mocha 'src/**/*.spec.js'",
     "build": "node node_modules/browserify/bin/cmd.js src/app.js > bundle.js",
     "start": "node node_modules/http-server/bin/http-server"
   },
