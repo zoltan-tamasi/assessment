@@ -1,25 +1,22 @@
-# JavaScript/Front-end Developer - Exercise 1
+### Usage
+Install dependencies
+```
+npm i 
+```
 
-## Instructions
+Build bundle for frontend
+```
+npm run build
+```
 
-- Fork this project.
-- Write tests.
-- Don't use external libraries for the conversion.
-- Commit the important milestones and not just the final result.
+Start server
+```
+npm start
+```
 
-## Exercise description
+Open frontend application at http://127.0.0.1:8080
 
-Create an application that contains a web form, which has a numeric input field and a submit button.
-
-When the user gives an arabic number, the system shows the english phrase of that number.
-
-For example:
-<pre>
-7    == seven
-42   == forty-two
-2001 == two thousand and one
-1999 == nineteen hundred and ninety-nine
-17999 == seventeen thousand nine hundred and ninety-nine
-</pre>
-
-That's all.
+### Run tests
+```
+npm run test
+```
