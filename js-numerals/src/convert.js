@@ -50,12 +50,16 @@ const convert = (num) => {
 
   if (numString.length > 3) {
   } else if (numString.length === 3) {
-    return ones(head) + ' hundred and ' + convert(parseInt(tail.join()));
+    if (tail.join('') === '00') { 
+      return ones(head) + ' hundred';
+    } else { 
+      return ones(head) + ' hundred and ' + convert(parseInt(tail.join('')));
+    }
   } else if (numString.length === 2) {
     if (head === '1') {
         return teens(tail[0]);
     } else { 
-        return (tail === '0' ? '' : tens(head) + '-') + ones(tail[0]);
+        return (tail.join('') === '0' ? '' : tens(head) + '-') + ones(tail[0]);
     }
   } else {
     return ones(head);
