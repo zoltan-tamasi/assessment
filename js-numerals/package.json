@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha 'src/**/*.spec.js'",
     "start": "node node_modules/http-server/bin/http-server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http-server": "^0.12.3"
+    "browserify": "^17.0.0",
+    "chai": "^4.3.4",
+    "http-server": "^0.12.3",
+    "mocha": "^8.3.2"
   }
 }
