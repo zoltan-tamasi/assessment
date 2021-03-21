@@ -48,7 +48,15 @@ const convert = (num) => {
   const numString = num.toString().split('');
   const [head, ...tail] = numString;
 
-  if (numString.length > 3) {
+  if (numString.length === 4 && head === '1') {
+    const tail = numString.slice(-2);
+    const head = numString.slice(0, -2);
+    if (tail.join('') === '00') {
+      return teens(head[1]) + ' hundred';
+    } else { 
+      return teens(head[1]) + ' hundred and ' + convert(parseInt(tail.join('')));
+    }
+  } else if (numString.length > 3) {
     const tail = numString.slice(-3);
     const head = numString.slice(0, -3);
     if (tail[0] === '0') { 
