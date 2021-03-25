@@ -1,21 +1,22 @@
 
 const uuid = require('uuid');
-const todos = [];
+const { Map } = require('immutable');
+let todos = Map();
 
 const createTodo = ({
   text, priority, done
 }) => {
   const newItem = { text, priority, done, id: uuid.v1() };
-  todos.push(newItem);
+  todos = todos.set(newItem.id, newItem);
   return newItem
 };
 
 const getTodos = () => {
-  return todos;
+  return Array.from(todos.values());
 };
 
 const getTodoById = (id) => {
-  const todoItem = todos.find(todo => todo.id === id);
+  const todoItem = todos.get(id);
   if (todoItem === undefined) {
     throw new Error(`Todo item with id: ${id} cannot be found`);
   } 

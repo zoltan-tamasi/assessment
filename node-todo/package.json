@@ -9,6 +9,7 @@
   "author": "",
   "dependencies": {
     "chai": "^4.3.4",
+    "immutable": "^4.0.0-rc.12",
     "mocha": "^8.3.2",
     "uuid": "^8.3.2"
   }
