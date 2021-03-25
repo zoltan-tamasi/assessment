@@ -29,6 +29,10 @@ const updateTodoById = (id, update) => {
   return getTodoById(id);
 };
 
+const deleteTodoById = (id) => {
+  todos = todos.delete(id);
+};
+
 module.exports = {
-  createTodo, getTodos, getTodoById, updateTodoById
+  createTodo, getTodos, getTodoById, updateTodoById, deleteTodoById
 };

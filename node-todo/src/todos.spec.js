@@ -46,4 +46,10 @@ describe('Basic spec', () => {
     expect(updatedItem.done).to.equal(false);
     expect(updatedItem.id).to.equal(newItem.id);
   });
+
+  it('can delete todo entity by Id', () => {
+    const newItem = todoRepository.createTodo({ text: 'todoItem', priority: 3, done: false });
+    todoRepository.deleteTodoById(newItem.id); 
+    expect(() => todoRepository.getTodoById(newItem.id)).to.throw();
+  });
 });
