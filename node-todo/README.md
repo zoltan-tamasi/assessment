@@ -1,46 +1,29 @@
-# NodeJS Developer - Exercise 1
+### Usage
 
-## Instructions
+```
+npm i
+node app.js
+```
 
-- Fork this project.
-- Write tests.
-- Commit the important milestones and not just the final result.
+### Run tests
 
-## Exercise description
+```
+npm run test
+```
 
-Create a RESTful API that provides access to a collection called "todos" that contains just the following fields:
+### Example usage
 
-- `id`: String. Unique identifier of the todo (can't be set)
-- `text`: String. Can only contain english letters. (must be set)
-- `priority`: Number. Integer in the range from 1 to 5. (default value is 3)
-- `done`: Boolean. (default value is false)
+```
+$ curl -X POST -H 'Content-type: application/json' -d '{"text":"todoItem", "priority":3, "done":"false"}' localhost:3000/todos
+{"text":"todoItem","priority":3,"done":"false","id":"eebdd480-8d6a-11eb-9300-7d7f3bfbac09"}
 
-The API must accept JSON request body, and must provide JSON response body.
+$ curl localhost:3000/todos
+[{"id":"86a4d770-8d67-11eb-a3aa-511598a3fca0","text":"todoItem","priority":3,"done":false},{"id":"9eab5ab0-8d67-11eb-b521-e9d48378e61d","text":"todoItemc","priority":5,"done":false},{"text":"todoItem","priority":3,"done":"false","id":"eebdd480-8d6a-11eb-9300-7d7f3bfbac09"}]
 
-## Endpoints
+$ curl -X PUT -H 'Content-type: application/json' -d '{"priority":5, "done":"true"}' localhost:3000/todos/eebdd480-8d6a-11eb-9300-7d7f3bfbac09
+{"text":"todoItem","priority":5,"done":"true","id":"eebdd480-8d6a-11eb-9300-7d7f3bfbac09"}
 
-### GET /todos
+$ curl -X DELETE localhost:3000/todos/eebdd480-8d6a-11eb-9300-7d7f3bfbac09
+{"message":"Todo item with id: eebdd480-8d6a-11eb-9300-7d7f3bfbac09 successfully deleted"}
+```
 
-List all of the todos as an array of the todo objects.
-
-### POST /todos
-
-Creates a new todo, sets the given fields from the request body. Returns the new todo object.
-
-### GET /todos/:id
-
-Returns the todo object.
-
-### PUT /todos/:id
-
-Updates the given fields in the todo. Returns the new todo object.
-
-### DELETE /todos/:id
-
-Removes a todo from the collection.
-
-## Tasks
-
-1. Save all of the todos in a JSON file, if any modification happens. Load the collection from this file when the server restarts
-2. Remove todos that is done for 5 minutes
-3. Create unit tests for the API
