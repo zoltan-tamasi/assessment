@@ -34,7 +34,7 @@ const deleteTodoById = (id) => {
 };
 
 const storeTodosToJson = () => {
-  return JSON.stringify(Array.from(todos.values()));
+  return JSON.stringify(Array.from(todos.values()).map(({text, priority, done, id}) => ({ text, priority, id, done: done === true ? 'true' : 'false' })));
 };
 
 const loadTodosFromJson = (json) => {
@@ -42,6 +42,10 @@ const loadTodosFromJson = (json) => {
   todos = Map(todoList.map(({ text, priority, done, id }) => ([id, { text, priority, done: done === 'true' ? true : false }])));
 };
 
+const clearTodos = () => {
+  todos = Map();
+};
+
 module.exports = {
-  createTodo, getTodos, getTodoById, updateTodoById, deleteTodoById, loadTodosFromJson, storeTodosToJson
+  createTodo, getTodos, getTodoById, updateTodoById, deleteTodoById, loadTodosFromJson, storeTodosToJson, clearTodos
 };

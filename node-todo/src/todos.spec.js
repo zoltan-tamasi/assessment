@@ -59,4 +59,28 @@ describe('Basic spec', () => {
     const readItem = todoRepository.getTodoById(id); 
     expect(readItem.text).to.equal('todoItem');
   });
+
+  it('can store and load back entities from a JSON object', () => {
+    const newItem1 = todoRepository.createTodo({ text: 'todoItem1', priority: 3, done: false });
+    const newItem2 = todoRepository.createTodo({ text: 'todoItem2', priority: 4, done: true });
+
+    const jsonStore = todoRepository.storeTodosToJson();
+
+    todoRepository.clearTodos();
+    expect(todoRepository.getTodos().length).to.equal(0);
+
+    todoRepository.loadTodosFromJson(jsonStore);
+
+    const readItem1 = todoRepository.getTodoById(newItem1.id); 
+    expect(readItem1.text).to.equal('todoItem1');
+    expect(readItem1.priority).to.equal(3);
+    expect(readItem1.done).to.equal(false);
+    expect(readItem1.id).to.equal(readItem1.id);
+
+    const readItem2 = todoRepository.getTodoById(newItem2.id); 
+    expect(readItem2.text).to.equal('todoItem2');
+    expect(readItem2.priority).to.equal(4);
+    expect(readItem2.done).to.equal(true);
+    expect(readItem2.id).to.equal(readItem2.id);
+  });
 });
