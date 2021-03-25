@@ -30,6 +30,9 @@ const updateTodoById = (id, update) => {
 };
 
 const deleteTodoById = (id) => {
+  if (getTodoById(id) === undefined) {
+    throw new Error(`Todo item with id: ${id} cannot be found`);
+  }
   todos = todos.delete(id);
 };
 
