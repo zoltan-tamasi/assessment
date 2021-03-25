@@ -16,6 +16,10 @@ describe('Basic spec', () => {
     expect(uuid.validate(newItem.id)).to.equal(true);
   });
 
+  it('cannot create todo entity with invalid priority', () => {
+    expect(() => todoRepository.createTodo({ text: 'todoItem', priority: 6, done: false })).to.throw;
+  });
+
   it('can read back todo entity by Id', () => {
     const newItem = todoRepository.createTodo({ text: 'todoItem', priority: 3, done: false });
     const readItem = todoRepository.getTodoById(newItem.id); 
@@ -58,6 +62,11 @@ describe('Basic spec', () => {
     todoRepository.loadTodosFromJson(`[ { "text": "todoItem", "priority": 3, "done": "false", "id": "${id}" } ]`);
     const readItem = todoRepository.getTodoById(id); 
     expect(readItem.text).to.equal('todoItem');
+  });
+
+  it('cannot load entities from a JSON object with invalid priority value', () => {
+    const id = uuid.v1();
+    expect(() => todoRepository.loadTodosFromJson(`[ { "text": "todoItem", "priority": 6, "done": "false", "id": "${id}" } ]`)).to.throw;
   });
 
   it('can store and load back entities from a JSON object', () => {
