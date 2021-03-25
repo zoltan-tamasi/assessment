@@ -24,4 +24,26 @@ describe('Basic spec', () => {
     expect(readItem.done).to.equal(false);
     expect(readItem.id).to.equal(newItem.id);
   });
+
+  it('can create then change todo entity by Id #1', () => {
+    const newItem = todoRepository.createTodo({ text: 'todoItem', priority: 3, done: false });
+    const updatedItem = todoRepository.updateTodoById(newItem.id, {
+      text: 'changed'
+    }); 
+    expect(updatedItem.text).to.equal('changed');
+    expect(updatedItem.priority).to.equal(3);
+    expect(updatedItem.done).to.equal(false);
+    expect(updatedItem.id).to.equal(newItem.id);
+  });
+
+  it('can create then change todo entity by Id #2', () => {
+    const newItem = todoRepository.createTodo({ text: 'todoItem', priority: 3, done: false });
+    const updatedItem = todoRepository.updateTodoById(newItem.id, {
+      text: 'changed', priority: 5
+    }); 
+    expect(updatedItem.text).to.equal('changed');
+    expect(updatedItem.priority).to.equal(5);
+    expect(updatedItem.done).to.equal(false);
+    expect(updatedItem.id).to.equal(newItem.id);
+  });
 });

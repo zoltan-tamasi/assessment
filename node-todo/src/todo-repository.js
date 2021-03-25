@@ -23,6 +23,12 @@ const getTodoById = (id) => {
   return todoItem;
 };
 
+const updateTodoById = (id, update) => {
+  const todoItem = getTodoById(id);
+  todos = todos.set(id, Object.assign(todoItem, update));
+  return getTodoById(id);
+};
+
 module.exports = {
-  createTodo, getTodos, getTodoById
+  createTodo, getTodos, getTodoById, updateTodoById
 };
