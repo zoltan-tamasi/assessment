@@ -15,4 +15,13 @@ describe('Basic spec', () => {
     expect(newItem.done).to.equal(false);
     expect(uuid.validate(newItem.id)).to.equal(true);
   });
+
+  it('can read back todo entity by Id', () => {
+    const newItem = todoRepository.createTodo({ text: 'todoItem', priority: 3, done: false });
+    const readItem = todoRepository.getTodoById(newItem.id); 
+    expect(readItem.text).to.equal('todoItem');
+    expect(readItem.priority).to.equal(3);
+    expect(readItem.done).to.equal(false);
+    expect(readItem.id).to.equal(newItem.id);
+  });
 });
