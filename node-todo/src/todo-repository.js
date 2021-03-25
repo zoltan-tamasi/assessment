@@ -33,6 +33,15 @@ const deleteTodoById = (id) => {
   todos = todos.delete(id);
 };
 
+const storeTodosToJson = () => {
+  return JSON.stringify(Array.from(todos.values()));
+};
+
+const loadTodosFromJson = (json) => {
+  const todoList = JSON.parse(json);
+  todos = Map(todoList.map(({ text, priority, done, id }) => ([id, { text, priority, done: done === 'true' ? true : false }])));
+};
+
 module.exports = {
-  createTodo, getTodos, getTodoById, updateTodoById, deleteTodoById
+  createTodo, getTodos, getTodoById, updateTodoById, deleteTodoById, loadTodosFromJson, storeTodosToJson
 };

@@ -52,4 +52,11 @@ describe('Basic spec', () => {
     todoRepository.deleteTodoById(newItem.id); 
     expect(() => todoRepository.getTodoById(newItem.id)).to.throw();
   });
+
+  it('can load entities from a JSON object', () => {
+    const id = uuid.v1();
+    todoRepository.loadTodosFromJson(`[ { "text": "todoItem", "priority": 3, "done": "false", "id": "${id}" } ]`);
+    const readItem = todoRepository.getTodoById(id); 
+    expect(readItem.text).to.equal('todoItem');
+  });
 });
