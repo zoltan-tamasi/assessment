@@ -1,14 +1,27 @@
 
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const todoRepository = require('./src/todo-repository');
 
 const app = express();
+app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
+const jsonStoreFileName = process.env.STORE || 'store.json';
 
-app.use(bodyParser.json());
+const saveTodosToStoreAndQuit = () => {
+  fs.writeFileSync(jsonStoreFileName, todoRepository.storeTodosToJson());
+  process.exit(0);
+}
+
+if (!fs.existsSync(jsonStoreFileName)) {
+  fs.writeFileSync(jsonStoreFileName, '[]');
+}
+
+const store = fs.readFileSync(jsonStoreFileName).toString();
+todoRepository.loadTodosFromJson(store);
 
 app
   .get('/todos/:id', ({ params: { id } }, res) => {
@@ -70,3 +83,6 @@ const server = app.listen(
   port,
   () => console.log(`Server is running on: ${port}`),
 );
+
+process.on('SIGTERM', saveTodosToStoreAndQuit);
+process.on('SIGINT', saveTodosToStoreAndQuit);

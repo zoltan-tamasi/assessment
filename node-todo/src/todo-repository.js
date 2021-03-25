@@ -42,7 +42,7 @@ const storeTodosToJson = () => {
 
 const loadTodosFromJson = (json) => {
   const todoList = JSON.parse(json);
-  todos = Map(todoList.map(({ text, priority, done, id }) => ([id, { text, priority, done: done === 'true' ? true : false }])));
+  todos = Map(todoList.map(({ text, priority, done, id }) => ([id, { id, text, priority, done: done === 'true' ? true : false }])));
 };
 
 const clearTodos = () => {
