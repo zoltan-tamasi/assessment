@@ -4,6 +4,10 @@
 npm i
 node app.js
 ```
+with env variables:
+```
+env STORE=file.json PORT=4000 node app.js
+```
 
 ### Run tests
 
